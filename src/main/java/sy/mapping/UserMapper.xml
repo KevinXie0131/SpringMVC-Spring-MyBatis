@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sy.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="sy.model.User">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="CREATEDATETIME" property="createdatetime" jdbcType="TIMESTAMP" />
+		<result column="MODIFYDATETIME" property="modifydatetime" jdbcType="TIMESTAMP" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="PWD" property="pwd" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CREATEDATETIME, MODIFYDATETIME, NAME, PWD, CREATE_TIME, UPDATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tuser
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tuser
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="sy.model.User">
+		insert into tuser (ID, CREATEDATETIME, MODIFYDATETIME,
+		NAME, PWD, CREATE_TIME,
+		UPDATE_TIME)
+		values (#{id,jdbcType=VARCHAR}, #{createdatetime,jdbcType=TIMESTAMP}, #{modifydatetime,jdbcType=TIMESTAMP},
+		#{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
+		#{updateTime,jdbcType=DATE})
+	</insert>
+	<insert id="insertSelective" parameterType="sy.model.User">
+		insert into tuser
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="createdatetime != null">
+				CREATEDATETIME,
+			</if>
+			<if test="modifydatetime != null">
+				MODIFYDATETIME,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="pwd != null">
+				PWD,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="createdatetime != null">
+				#{createdatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifydatetime != null">
+				#{modifydatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				#{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="sy.model.User">
+		update tuser
+		<set>
+			<if test="createdatetime != null">
+				CREATEDATETIME = #{createdatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifydatetime != null">
+				MODIFYDATETIME = #{modifydatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				PWD = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=DATE},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="sy.model.User">
+		update tuser
+		set CREATEDATETIME = #{createdatetime,jdbcType=TIMESTAMP},
+		MODIFYDATETIME = #{modifydatetime,jdbcType=TIMESTAMP},
+		NAME = #{name,jdbcType=VARCHAR},
+		PWD = #{pwd,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=DATE},
+		UPDATE_TIME = #{updateTime,jdbcType=DATE}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+	<select id="selectUserRole" parameterType="java.lang.String" resultType="sy.model.UserRole">
+		SELECT
+		tuser_trole.ID,
+		tuser_trole.ROLE_ID,
+		tuser_trole.USER_ID
+		FROM
+		tuser_trole
+		where tuser_trole.user_id=#{id,jdbcType=VARCHAR}
+	</select>
+	<resultMap type="sy.model.User" id="userResultMap" extends="BaseResultMap">
+		<collection property="userRoles" column="ID" javaType="list" select="selectUserRole" />
+	</resultMap>
+	<select id="getAll" resultMap="userResultMap">
+		select ID, CREATEDATETIME, MODIFYDATETIME, NAME, PWD from tuser
+	</select>
+
+	<resultMap type="sy.model.User" id="userResultMap2" extends="BaseResultMap">
+		<collection property="userRoles" javaType="list" ofType="sy.model.UserRole">
+			<id property="id" column="userrole_id" />
+			<result column="role_id" property="roleId" />
+			<result property="userId" column="user_id" />
+		</collection>
+	</resultMap>
+	<select id="getAll2" resultMap="userResultMap2">
+		SELECT
+		tuser.ID,
+		tuser.CREATEDATETIME,
+		tuser.MODIFYDATETIME,
+		tuser.`NAME`,
+		tuser.PWD,
+		tuser.CREATE_TIME,
+		tuser.UPDATE_TIME,
+		tuser_trole.ID userrole_id,
+		tuser_trole.ROLE_ID role_id,
+		tuser_trole.USER_ID user_id
+		FROM
+		tuser
+		JOIN tuser_trole ON tuser.ID = tuser_trole.USER_ID
+	</select>
+
+
+	<resultMap type="sy.model.User" id="userResultMap3" extends="BaseResultMap">
+		<collection property="userRoles" javaType="list" ofType="sy.model.UserRole">
+			<id property="id" column="userrole_id" />
+			<result column="role_id" property="roleId" />
+			<result property="userId" column="user_id" />
+
+			<association property="role" javaType="sy.model.Role">
+				<id property="id" column="role_id" />
+				<result property="text" column="role_text" />
+			</association>
+		</collection>
+	</resultMap>
+	<select id="getAll3" resultMap="userResultMap3">
+		SELECT
+		tuser.ID,
+		tuser.CREATEDATETIME,
+		tuser.MODIFYDATETIME,
+		tuser.`NAME`,
+		tuser.PWD,
+		tuser.CREATE_TIME,
+		tuser.UPDATE_TIME,
+		tuser_trole.ID userrole_id,
+		tuser_trole.ROLE_ID role_id,
+		tuser_trole.USER_ID user_id,
+		trole.ID role_id,
+		trole.TEXT role_text
+		FROM
+		tuser
+		JOIN tuser_trole ON tuser.ID = tuser_trole.USER_ID
+		JOIN trole ON tuser_trole.ROLE_ID = trole.ID
+	</select>
+</mapper>

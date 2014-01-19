@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sy.dao.OnlineMapper" >
+  <resultMap id="BaseResultMap" type="sy.model.Online" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="LOGINDATETIME" property="logindatetime" jdbcType="TIMESTAMP" />
+    <result column="LOGINNAME" property="loginname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, IP, LOGINDATETIME, LOGINNAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tonline
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tonline
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sy.model.Online" >
+    insert into tonline (ID, IP, LOGINDATETIME, 
+      LOGINNAME)
+    values (#{id,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{logindatetime,jdbcType=TIMESTAMP}, 
+      #{loginname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="sy.model.Online" >
+    insert into tonline
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+      <if test="logindatetime != null" >
+        LOGINDATETIME,
+      </if>
+      <if test="loginname != null" >
+        LOGINNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="logindatetime != null" >
+        #{logindatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sy.model.Online" >
+    update tonline
+    <set >
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="logindatetime != null" >
+        LOGINDATETIME = #{logindatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginname != null" >
+        LOGINNAME = #{loginname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sy.model.Online" >
+    update tonline
+    set IP = #{ip,jdbcType=VARCHAR},
+      LOGINDATETIME = #{logindatetime,jdbcType=TIMESTAMP},
+      LOGINNAME = #{loginname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
