@@ -6,11 +6,8 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd
 ">
 
-	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:config.properties" />
 
-	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="sy.service" />
-
 
 </beans>

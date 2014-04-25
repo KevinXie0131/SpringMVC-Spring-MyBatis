@@ -6,11 +6,10 @@
 		<param-value>classpath:spring.xml,classpath:spring-mybatis.xml</param-value>
 	</context-param>
 	<filter>
-		<description>字符集过滤器</description>
+		<description>encoding filter</description>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
-			<description>字符集编码</description>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
@@ -20,10 +19,10 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<listener>
-		<description>spring监听器</description>
+		<description>spring listener</description>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!-- 防止spring内存溢出监听器 -->
+	
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
@@ -33,7 +32,7 @@
 		<servlet-name>springMvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
-			<description>spring mvc 配置文件</description>
+			<description>spring mvc config</description>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
@@ -46,7 +45,7 @@
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
-	<!-- 配置session超时时间，单位分钟 -->
+	
 	<session-config>
 		<session-timeout>15</session-timeout>
 	</session-config>
