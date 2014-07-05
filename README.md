@@ -1,10 +1,10 @@
-Spring+SpringMVC+MyBatis
+SpringMVC+Spring+MyBatis
 ========================
 
 Frameworks and Tools
 -----------------------------------
 * Java&IDE: JDK6 MyEclipse
-* Backend:  Spring3.2.9 SpringMVC3.2.9 MyBatis3.1.1 (Configured by annotation)
+* Backend:  SpringMVC3.2.9 Spring3.2.9 MyBatis3.1.1 (Configured by annotation)
 * Database: Oracle10g
 * Web Server: Tomcat 7
 * Build Tool: Maven
