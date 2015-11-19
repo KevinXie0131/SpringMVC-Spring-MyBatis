@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 配置文件路径 -->
+    <properties resource="config.properties"/>
+
+    <!--数据库驱动包路径 已经在Maven的pom配置过了，这里就不需要了-->
+    <!--<classPathEntry location="${drive.class.path}"/>-->
+
+    <context id="MySQLTables" targetRuntime="MyBatis3Simple">
+        <!--关闭注释 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接信息 -->
+        <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.username}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+        <!--
+        默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+            true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal
+         -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!--生成的model 包路径 -->
+        <javaModelGenerator targetPackage="${model.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成xml mapper文件 路径 -->
+        <sqlMapGenerator targetPackage="${xml.mapper.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成的Dao接口 的包路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="${dao.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--对应数据库表名 -->
+        <table schema="fsi" tableName="school" domainObjectName="MUser" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>
