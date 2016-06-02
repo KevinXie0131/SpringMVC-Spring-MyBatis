@@ -34,12 +34,12 @@ public class MUserController {
 		request.setAttribute("userlist", list);
 		return "listUser";
 	}
-	
+
 	@RequestMapping(value="/addUser")
 	public String addUser(MUser muser) {
 			
 		String id = UUID.randomUUID().toString();
-		muser.setId(id);
+		muser.setId(id.replace("-",""));
 		getMuserService().insert(muser);
 		return "redirect:/muserController/listUser.do";
 	}
