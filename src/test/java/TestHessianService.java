@@ -18,6 +18,6 @@ public class TestHessianService {
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 "hessian-client.xml");
         HelloService hello = (HelloService) context.getBean("hessianClient");
-        System.out.println(hello.helloWorld("jimmy.yang"));
+        System.out.println(hello.helloWorld("Jeremy King"));
     }
 }

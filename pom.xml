@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>zhibing_mybatis</groupId>
-    <artifactId>zhibing_mybatis</artifactId>
+    <groupId>lbing_mybatis</groupId>
+    <artifactId>lbing_mybatis</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>zhibing_mybatis</name>
+    <name>lbing_mybatis</name>
     <description/>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -157,6 +157,6 @@
             </plugin>
         </plugins>
 
-        <finalName>zhibing_mybatis</finalName>
+        <finalName>lbing_mybatis</finalName>
     </build>
 </project>
