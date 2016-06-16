@@ -156,7 +156,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
         <finalName>lbing_mybatis</finalName>
     </build>
 </project>
