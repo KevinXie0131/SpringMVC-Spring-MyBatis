@@ -8,12 +8,12 @@ Frameworks and Tools
 * Database: Mysql
 * Web Server: Tomcat 7
 * Build Tool: Maven 3.3.9
-* RPC: Hessian 4,Dubbo 2.5.3[参考链接](http://blog.csdn.net/congcong68/article/details/41113239)
+* RPC: Hessian 4,Dubbo 2.5.3 [参考链接](http://blog.csdn.net/congcong68/article/details/41113239)
 * Other: Druid(database connection pool) JUnit Log4j Jackson FastJson Zookeeper
 
 System Features
 -----------------------------------
-* Integration of Spring core, Spring MVC, and MyBatis
+* Integration of Spring core, Spring MVC, and MyBatis, Dubbo
 * Management of users through CRUD interface
 
 Code Generator for MyBatis
