@@ -13,10 +13,10 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<property name="username" value="${jdbc_username}" />
 		<property name="password" value="${jdbc_password}" />
 	
-		<property name="initialSize" value="0" />		
-		<property name="maxActive" value="20" />	
+		<property name="initialSize" value="0" />
+		<property name="maxActive" value="20" />
 		<property name="maxIdle" value="20" />
-		<property name="minIdle" value="0" />		
+		<property name="minIdle" value="0" />
 		<property name="maxWait" value="60000" />
 		
 		<property name="validationQuery" value="${validationQuery}" />
