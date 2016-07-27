@@ -24,6 +24,11 @@ Code Generator for MyBatis
   java -jar mybatis-generator-core-1.3.2.jar -configfile generator.xml -overwrite
 * Then Java POJOs that match the table structure will be generated.
 
+Integration Dubbo
+-----------------------------------
+* Thank for the author provide the link [参考链接](http://blog.csdn.net/congcong68/article/details/41113239)
+* I deploy the project through the link.
+
 About
 -----------------------------------
 * [Github link](https://github.com/jgroups)
