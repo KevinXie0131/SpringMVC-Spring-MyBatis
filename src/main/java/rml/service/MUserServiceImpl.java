@@ -11,45 +11,41 @@ import rml.model.MUser;
 @Service("muserService")
 public class MUserServiceImpl implements MUserServiceI{
 
+	@Autowired
 	private MUserMapper muserMapper;
 		
 	public MUserMapper getMuserMapper() {
 		return muserMapper;
 	}
 
-	@Autowired
-	public void setMuserMapper(MUserMapper muserMapper) {
-		this.muserMapper = muserMapper;
-	}
-	
 	@Override
 	public List<MUser> getAll() {
 		
-		return muserMapper.getAll();
+		return getMuserMapper().getAll();
 	}
 
 	@Override
 	public int insert(MUser muser) {
 		
-		return muserMapper.insert(muser);
+		return getMuserMapper().insert(muser);
 	}
 
 	@Override
 	public int update(MUser muser) {
 		
-		return muserMapper.updateByPrimaryKey(muser);
+		return getMuserMapper().updateByPrimaryKey(muser);
 	}
 
 	@Override
 	public int delete(String id) {
 	
-		return muserMapper.deleteByPrimaryKey(id);
+		return getMuserMapper().deleteByPrimaryKey(id);
 	}
 
 	@Override
 	public MUser selectByPrimaryKey(String id) {
 		
-		return muserMapper.selectByPrimaryKey(id);
+		return getMuserMapper().selectByPrimaryKey(id);
 	}
 
 }
